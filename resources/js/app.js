@@ -43,30 +43,33 @@ new Vue({
         askStep: function(){
             var self = this;
 
-            switch(self.step){
+            switch (self.step) {
                 case 1:
-                    axios.get('/api/people').then(function(response){
+                    axios.get('/api/people').then(function (response) {
                         var json = response.data;
                         self.session.people = json;
                         self.nextStep();
                     });
                     break;
+        
                 case 2:
-                    var cep = self.session.in_cep;
-                    console.log(cep);
-                    // axios.get('/api/location/' + cep).then(function(response){
-                    //     var json = response.data;
-                    //     self.session.location = json;
-                    //     self.nextStep();
-                    // });
+                    var cep = self.session.in_cep.replace(/-/, '');
+                    axios.get('/api/location/' + cep).then(function(response){
+                        var json = response.data;
+                        self.session.location = json;
+                        self.nextStep();
+                    });
                     break;
+        
                 case 4:
-                    axios.get('/api/company').then(function(response){
+                    var cnpj = self.session.in_cnpj.replace(/[\.\/\-]/g, '');
+                    axios.get('/api/company/' + cnpj).then(function (response) {
                         var json = response.data;
                         self.session.business = json;
                         self.nextStep();
                     });
                     break;
+        
                 case 7:
                     //Enviar dados via POST
                     self.finishStep();
