@@ -35,14 +35,18 @@ Link navegável do Heroku: [https://mhw-time-6.herokuapp.com/](https://mhw-time-
 
 Instalar dependências com composer:
 
-    git clone url.git mhw-time6
+    git clone https://github.com/noubh/mhw-time-6.git mhw-time6
     cd mhw-time6
     composer install
 
 Instalar chaves:
 
-    php artisan keys:generate
+    php artisan key:generate
 
 Iniciar serviço:
 
     php artisan serve
+
+Acessa:
+
+    http://localhost:8000
