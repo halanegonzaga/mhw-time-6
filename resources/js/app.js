@@ -52,11 +52,13 @@ new Vue({
                     });
                     break;
                 case 2:
-                    axios.get('/api/location').then(function(response){
-                        var json = response.data;
-                        self.session.location = json;
-                        self.nextStep();
-                    });
+                    var cep = self.session.in_cep;
+                    console.log(cep);
+                    // axios.get('/api/location/' + cep).then(function(response){
+                    //     var json = response.data;
+                    //     self.session.location = json;
+                    //     self.nextStep();
+                    // });
                     break;
                 case 4:
                     axios.get('/api/company').then(function(response){

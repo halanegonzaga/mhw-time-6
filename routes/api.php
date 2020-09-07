@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Webservice\ViaCep;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/people', function () {
+# API Gr1d
+Route::get('/people', function ($cpf) {
     $data = [
-        'cpf' => '47538899049',
+        'cpf' => $cpf,
         'name' => 'Regiane Alves Leite',
         'gender' => 'F',
         'age' => 53
@@ -25,23 +27,29 @@ Route::get('/people', function () {
     return response()->json($data);
 });
 
-Route::get('/company', function () {
+# API ReceitaWS
+Route::get('/company/{cnpj}', function ($cnpj) {
     $data = [
-        'cnpj' => '06990590000123',
+        'cnpj' => $cnpj,
         'name' => 'GOOGLE BRASIL INTERNET LTDA'
     ];
 
     return response()->json($data);
 });
 
-Route::get('/location', function () {
+# API ViaCEP
+Route::get('/location/{cep}', function ($cep) {
+    $ws = new ViaCep;
+    $result = $ws->search($cep);
+
     $data = [
-        'cep' => '29164510',
-        'address' => 'Rua Gilseppi Verdi',
-        'burgh' => 'Praia de Carapebus',
-        'city' => 'Serra',
-        'uf' => 'ES'
+        'cep' => $result->cep,
+        'address' => $result->logradouro,
+        'burgh' => $result->bairro,
+        'city' => $result->cidade,
+        'uf' => $result->uf
     ];
+
 
     return response()->json($data);
 });

@@ -21,8 +21,8 @@
                 <div class="container flex">
                     <div id="top_bg"></div>
                     <div class="mt-20 w-2/4">
-                        <h1 class="font-bold my-4">Hub de Informações</h1>
-                        <p style="color: #494949">Passe por nossa triagem para conhecer o seu perfil empreendedor e também as melhores oportunidades de cursos, mentorias, grupos e todo apoio necessário.</p>
+                        <h1 class="font-bold my-4">Donas de Negócios</h1>
+                        <p style="color: #494949">Um espaço de informações onde você encontra as melhores oportunidade de cursos, mentorias, redes de contatos e todo o apoio necessário. Conheça o seu perfil empreendedor e tenha uma plataforma do seu jeito! <b>Bora juntas?</b></p>
                         <button class="btn text-white font-bold px-4" style="border-radius: 20px; background-color: #AC28FF" v-on:click="openQuestions()"><b>Acessar</b></button>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                                 <li class="mt-2 p-2 text-gray-700">Cursos <span class="badge badge-info float-right mr-5 text-white py-1 px-2" style="border-radius: 50%">2</span></li>
                                 <li class="mt-2 p-2 text-gray-700">Mentorias</li>
                                 <li class="mt-2 p-2 text-gray-700">Aplicativos</li>
-                                <li class="mt-2 p-2 text-gray-700">Grupos</li>
+                                <li class="mt-2 p-2 text-gray-700">Rede de Contatos</li>
                             </ul>
                         </div>
                         <div class="w-auto">

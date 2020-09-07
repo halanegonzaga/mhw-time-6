@@ -15,6 +15,10 @@ class Endereco extends Model
     # Colunas para atribuicão
     
     protected $fillable = [
-        
+        'cep',
+        'logradouro',
+        'bairro',
+        'cidade',
+        'uf'
     ];
 }

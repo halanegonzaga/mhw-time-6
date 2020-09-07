@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Webservice;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Endereco;
+use Illuminate\Support\Facades\Http;
 
 class ViaCep extends Controller
 {
@@ -15,32 +16,31 @@ class ViaCep extends Controller
      * Armazenando os dados no banco de dados
      * Retorna o objeto
      */
-    public function getData($cep)
+    public function search($cep)
     {
 
-        $endreco = Endereco::where('cep', $cep)->first();
+        $endereco = Endereco::where('cep', $cep)->first();
 
-        if(!$endreco){
+        if(!$endereco){
             // url 
             $url = sprintf(self::ENDPOINT, $cep);
 
 
             //curl
-            $response = Curl::to($url)
-            ->asJson()
-            ->get();
+            $request = Http::get($url);
+            $response = $request->json();
 
             // dados
-            $cep = $response->cep;
-            $logradouro = $response->logradouro;
-            $bairro = $response->bairro;
-            $cidade = $response->localidade;
-            $uf = $response->uf;
+            $cep = str_replace(['-', '/'], null, $response['cep']);
+            $logradouro = $response['logradouro'];
+            $bairro = $response['bairro'];
+            $cidade = $response['localidade'];
+            $uf = $response['uf'];
 
             // model
-            $endreco = Endereco::create([
+            $endereco = Endereco::create([
                'cep' => $cep,
-               'logradouro' => $response->logradouro,
+               'logradouro' => $logradouro,
                'bairro' => $bairro,
                'cidade' => $cidade,
                'uf' => $uf 
@@ -48,6 +48,6 @@ class ViaCep extends Controller
             
         }
         
-        return $endreco;
+        return $endereco;
     }
 }

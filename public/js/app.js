@@ -49587,15 +49587,17 @@ new Vue({
           break;
 
         case 2:
-          axios.get('/api/location').then(function (response) {
-            var json = response.data;
-            self.session.location = json;
-            self.nextStep();
+          var cep = self.session.in_cep.replace(/-/, '');
+          axios.get('/api/location/' + cep).then(function(response){
+              var json = response.data;
+              self.session.location = json;
+              self.nextStep();
           });
           break;
 
         case 4:
-          axios.get('/api/company').then(function (response) {
+          var cnpj = self.session.in_cnpj.replace(/[\.\/\-]/g, '');
+          axios.get('/api/company/' + cnpj).then(function (response) {
             var json = response.data;
             self.session.business = json;
             self.nextStep();
