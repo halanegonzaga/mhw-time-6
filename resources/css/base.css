@@ -13,7 +13,7 @@ html,body{
     background-image: url('../img/bg-home.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    min-height: 50%;
+    min-height: 55%;
 }
 
 #top_bg{
@@ -21,8 +21,8 @@ html,body{
     position: absolute;
     top: 2%;
     right: 5%;
-    width: 45%;
-    height: 45%;
+    width: 48%;
+    height: 48%;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
