@@ -38,12 +38,12 @@ return [
         
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL', 'postgres://haalane:Kc102030@localhost:5432/mhw-time-6'),
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'url' => env('DATABASE_URL', 'postgres://txzsafncqkxyhv:d61fcd1fe4d30cdb49384f99058f5321001bdf52b4c72a29a69d02577ab7d057@ec2-54-204-26-236.compute-1.amazonaws.com:5432/d9j9cmmf5hpco3'), //postgres://haalane:Kc102030@localhost:5432/mhw-time-6
+            'host' => env('DB_HOST', 'ec2-54-204-26-236.compute-1.amazonaws.com'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'mhw-time-6'),
-            'username' => env('DB_USERNAME', ''),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'd9j9cmmf5hpco3'),
+            'username' => env('DB_USERNAME', 'txzsafncqkxyhv'),
+            'password' => env('DB_PASSWORD', 'd61fcd1fe4d30cdb49384f99058f5321001bdf52b4c72a29a69d02577ab7d057'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
