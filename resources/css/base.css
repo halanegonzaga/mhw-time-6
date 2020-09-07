@@ -33,10 +33,66 @@ html,body{
     background: #E9DDFF;
 }
 
+#result{
+    min-height: 80%;
+}
+
 footer{
     min-height: 13%;
 }
 
 .services-item p{
     line-height: 1.4em;
+}
+
+.joan_1{
+    width: 300px;
+    height: 430px;
+    background-image: url('../img/joana-max.png');
+    background-size: 100% 100%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+.joan_2{
+    width: 230px;
+    height: 270px;
+    background-image: url('../img/joana-min.png');
+    background-size: 100% 100%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+
+.dialog-questions, .dialog_box_2{
+    background: #AC28FF;
+    border-radius: .4em;
+    position: relative;
+}
+
+.dialog-questions:after, .dialog_box_2::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 25px solid transparent;
+	border-right-color: #AC28FF;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -12.5px;
+	margin-left: -25px;
+}
+
+.dialog-questions .ask .btn{
+    background-color: rgb(196 116 255) !important;
+    border-radius: .4em;
+    color: white
+
+}
+
+.dialog_box_2{
+    width: 240px;
+    position: absolute; 
+    bottom:40px;
+    left: 200px;
 }

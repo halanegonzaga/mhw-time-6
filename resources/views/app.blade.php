@@ -136,11 +136,11 @@
 
 
 
-                <div class="dialog_2 fixed" style="left:0; bottom: 0">
+                <div class="dialog_2 fixed" v-show="session.people.cpf" style="left:0; bottom: 0">
                     <div class="joan_2"></div>
                     <div class="dialog_box_2">
                         <div class="text-white p-4">
-                            <p><b>MARIA</b>,</p>
+                            <p><b>@{{ session.people.name }}</b>,</p>
                             <p>Que bom te conhecer, separamos aqui alguns links que podem te auxiliar!</p>
                         </div>
                     </div>
