@@ -25,7 +25,7 @@ Link navegável do Heroku: [https://mhw-time-6.herokuapp.com/](https://mhw-time-
 - Tailwind CSS
 
 
-## APIs
+## Consumindo APIs via cURL
 
 - Gr1d
 - ReceitaWS
