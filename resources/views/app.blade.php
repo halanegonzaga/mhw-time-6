@@ -148,6 +148,7 @@
             </section>
             <!--END FIlter-->
     
+            <!--Footer-->
             <footer>
                 <div class="container h-100">
                     <div class="w-full text-center mt-3 mb-2 text-xs text-gray-800">PARCEIROS</div>
@@ -172,8 +173,7 @@
                     </div>
                 </div>
             </footer>
-
-
+            <!--END Footer-->
 
             <!--Modal Triagem-->
             <div class="w-full bg-purple-300 h-100 fixed" style="top:0; left: 0" v-show="questions == true">
@@ -186,7 +186,7 @@
                             <div class="h-100 w-full relative">
                                 <div class="w-full" style="height: 100%; border-radius: .4em;">
                                     
-                                    <!--Step 0-->
+                                    <!--Step-->
                                     <div v-show="step == 0">
                                         <div class="question p-3 text-white text-lg">
                                             <p>Olá, tudo bem?</p>
@@ -198,7 +198,162 @@
                                             <button class="btn" v-on:click="finishStep()">Agora não...</button>
                                         </div>
                                     </div>
-                                    <!--END Step 0-->
+                                    <!--END Step-->
+
+                                    <!--Step-->
+                                    <div v-show="step == 1">
+                                        <div class="question p-3 text-white text-lg">
+                                            <p>Para começar, me informa seu CPF?</p>
+                                        </div>
+                                        <div class="ask text-center">
+                                            <form onsubmit="return false" v-on:submit="askStep()">
+                                                <input disabled type="text" required class="form-control w-100 text-white border-0 text-center" style="font-size: 1.4em;background-color: rgb(171 109 210) !important" value="475.388.990-49" placeholder="000.000.000-00">
+                                                <button class="btn btn-purple mt-2">Ok, continuar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--END Step-->
+
+
+                                    <!--Step-->
+                                    <div v-show="step == 2">
+                                        <div class="question p-3 text-white text-lg">
+                                            <p><b>@{{ session.people.name }},</b> preciso saber onde você reside, me informa seu CEP?</p>
+                                        </div>
+                                        <div class="ask text-center">
+                                            <form onsubmit="return false" v-on:submit="askStep()">
+                                                <input  v-model="session.in_cep" type="text" required class="form-control w-100 text-white border-0 text-center" style="font-size: 1.4em;background-color: rgb(171 109 210) !important" value="475.388.990-49" placeholder="000.000.000-00">
+                                                <button class="btn btn-purple mt-2">Continuar...</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--END Step-->
+
+                                    <!--Step-->
+                                    <div v-show="step == 3">
+                                        <div class="question p-3 text-white text-lg">
+                                            <p><b>@{{ session.people.name }},</b> você é chefe de família / tem filhos?</p>
+                                        </div>
+                                        <div class="ask text-center">
+                                            <button class="btn btn-purple mt-2" type="button" v-on:click="session.is_mother = true; nextStep()">Sim</button>
+                                            <button class="btn btn-purple mt-2" type="button" v-on:click="session.is_mother = false; nextStep()">Não</button>
+                                        </div>
+                                    </div>
+                                    <!--END Step-->
+
+                                    <!--Step-->
+                                    <div v-show="step == 4">
+                                        <div class="question p-3 text-white text-lg">
+                                            <p><b>@{{ session.people.name }},</b> Se você possui uma empresa ou é MEI, me informa seu CNPJ?</p>
+                                        </div>
+                                        <div class="ask text-center">
+                                            <form onsubmit="return false" v-on:submit="askStep()">
+                                                <input v-model="session.in_cnpj" required type="text" class="form-control w-100 text-white border-0 text-center" style="font-size: 1.4em;background-color: rgb(171 109 210) !important" value="475.388.990-49" placeholder="000.000.000-00">
+                                                <button class="btn btn-purple mt-2">Esta é minha empresa!</button>
+                                                <button class="btn btn-purple mt-2" type="button" v-on:click="nextStep()">Eu ainda não tenho uma...</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--END Step-->
+
+                                    <!--Step-->
+                                    <div v-show="step == 5">
+                                        <div class="question p-3 text-white text-lg">
+                                            <p><b>@{{ session.people.name }},</b> qual área de atuação no mercado?</p>
+                                        </div>
+                                        <div class="ask text-center">
+                                            <form onsubmit="return false" v-on:submit="nextStep()">
+                                                <select style="font-size: 1.4em;background-color: rgb(171 109 210) !important" class="form-control text-white" v-model="session.filters.area">
+                                                    <option value="1">Tecnologia</option>
+                                                    <option value="2">Beleza & Estética</option>
+                                                    <option value="3">Gastronomia</option>
+                                                    <option value="4">Engenharia</option>
+                                                </select>
+                                                <button class="btn btn-purple mt-2">Continuar...</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--END Step-->
+
+                                    <!--Step-->
+                                    <div v-show="step == 6">
+                                        <div class="question p-3 text-white text-lg">
+                                            <p><b>@{{ session.people.name }},</b> qual sua principal necessidade, no que diz respeito a suporte para seu empreendimento?</p>
+                                        </div>
+                                        <div class="ask text-center">
+                                            <form onsubmit="return false" v-on:submit="askStep()">
+
+                                                <div class="grid grid-cols-3">
+                                                    <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                        <input type="checkbox" v-model="session.filters.support" value="1" id="support-1"> <label for="support-1">Financeiro</label>
+                                                    </div>
+                                                    <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                        <input type="checkbox" v-model="session.filters.support" value="2" id="support-2"> <label for="support-2">Marketing</label>
+                                                    </div>       
+                                                    <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                        <input type="checkbox" v-model="session.filters.support" value="3" id="support-3"> <label for="support-3">Planejamento</label>
+                                                    </div>          
+                                                    <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                        <input type="checkbox" v-model="session.filters.support" value="4" id="support-4"> <label for="support-4">Jurídico</label>
+                                                    </div>            
+                                                    <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                        <input type="checkbox" v-model="session.filters.support" value="5" id="support-5"> <label for="support-5">Saúde Mental</label>
+                                                    </div>                  
+                                                    <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                        <input type="checkbox" v-model="session.filters.support" value="6" id="support-6"> <label for="support-6">Parcerias</label>
+                                                    </div>                                      
+                                                </div>
+
+                                                <button type="button" v-on:click="nextStep()" class="btn btn-purple mt-2">Continuar...</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!--END Step-->
+
+                                    <!--Step-->
+                                    <div v-show="step == 7">
+                                        <form onsubmit="return false" v-on:submit="askStep()">
+                                            <div class="question p-3 text-white text-lg">
+                                                <p><b>@{{ session.people.name }},</b>  para finalizar, indica para mim os conteúdos que você mais gosta de acessar...</p>
+                                            </div>
+                                            <div class="ask text-center">
+
+                                                    <div class="grid grid-cols-4">
+                                                        <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                            <input type="checkbox" v-model="session.filters.study" value="1" id="study-1"> <label for="study-1">Artigos</label>
+                                                        </div>
+                                                        <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                            <input type="checkbox" v-model="session.filters.study" value="2" id="study-2"> <label for="study-2">Podcast</label>
+                                                        </div>       
+                                                        <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                            <input type="checkbox" v-model="session.filters.study" value="3" id="study-3"> <label for="study-3">Vídeos</label>
+                                                        </div>          
+                                                        <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                            <input type="checkbox" v-model="session.filters.study" value="4" id="study-4"> <label for="study-4">E-books</label>
+                                                        </div>                                      
+                                                    </div>
+
+                                                    <div class="question p-3 text-white text-lg">
+                                                        <p>E, quantas horas por dia você tem disponível para acessar esses conteúdos?</p>
+                                                    </div>
+
+                                                    <div class="grid grid-cols-4">
+                                                        <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                            <input type="radio" v-model="session.filters.hours" value="1" id="hour-1"> <label for="hour-1">Até 1 hora</label>
+                                                        </div>
+                                                        <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                            <input type="radio" v-model="session.filters.hours" value="2" id="hour-2"> <label for="hour-2">Entre 2 e 4 horas</label>
+                                                        </div>  
+                                                        <div class="py-1 m-1 bg-purple-500 text-white" style="cursor: pointer">
+                                                            <input type="radio" v-model="session.filters.hours" value="3" id="hour-3"> <label for="hour-3">Acima de 4</label>
+                                                        </div>                                
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-purple mt-2">Finalizar!</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--END Step-->
 
 
                                 </div>
