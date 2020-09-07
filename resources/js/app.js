@@ -94,6 +94,7 @@ new Vue({
         finishStep: function(){
             this.filter = true;
             this.questions = false; 
+            this.step = 0;
         }
     }
 });

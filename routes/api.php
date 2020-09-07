@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Webservice\ViaCep;
+use App\Http\Controllers\Webservice\ReceitaWS;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,13 @@ Route::get('/people', function () {
 
 # API ReceitaWS
 Route::get('/company/{cnpj}', function ($cnpj) {
+    $ws = new ReceitaWS;
+    $result = $ws->search($cnpj);
+
     $data = [
         'cnpj' => $cnpj,
-        'name' => 'GOOGLE BRASIL INTERNET LTDA'
+        'name' => $result->fantasia,
+        'email' => $result->email
     ];
 
     return response()->json($data);
