@@ -14,6 +14,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/people', function () {
+    $data = [
+        'cpf' => '47538899049',
+        'name' => 'Regiane Alves Leite',
+        'gender' => 'F',
+        'age' => 53
+    ];
+
+    return response()->json($data);
+});
+
+Route::get('/company', function () {
+    $data = [
+        'cnpj' => '06990590000123',
+        'name' => 'GOOGLE BRASIL INTERNET LTDA'
+    ];
+
+    return response()->json($data);
+});
+
+Route::get('/location', function () {
+    $data = [
+        'cep' => '29164510',
+        'address' => 'Rua Gilseppi Verdi',
+        'burgh' => 'Praia de Carapebus',
+        'city' => 'Serra',
+        'uf' => 'ES'
+    ];
+
+    return response()->json($data);
 });

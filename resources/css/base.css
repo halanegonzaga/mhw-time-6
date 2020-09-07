@@ -1,0 +1,42 @@
+html,body{
+    font-size: 18px;
+    background:white;
+    position: relative;
+    overflow-y: auto;
+    /* margin: 0; */
+    /* padding: 0; */
+    height: 100%;
+    width: 100%;
+}
+
+#top{
+    background-image: url('../img/bg-home.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 50%;
+}
+
+#top_bg{
+    background-image: url('../img/bora-juntas.png');
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    width: 45%;
+    height: 45%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+#services{
+    min-height: 25%;
+    background: #E9DDFF;
+}
+
+footer{
+    min-height: 13%;
+}
+
+.services-item p{
+    line-height: 1.4em;
+}
