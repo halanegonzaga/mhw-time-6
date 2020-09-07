@@ -16,7 +16,7 @@ use App\Http\Controllers\Webservice\ViaCep;
 */
 
 # API Gr1d
-Route::get('/peopleZ', function () {
+Route::get('/people', function () {
     $data = [
         'cpf' => '47538899049',
         'name' => 'Regiane Alves Leite',
